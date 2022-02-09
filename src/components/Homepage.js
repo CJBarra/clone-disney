@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import ImgCarousel from "./ImgCarousel";
+import Viewers from "./Viewers";
 
 
 function Homepage() {
   return (
     <Container>
       <ImgCarousel />
+      <Viewers />
     </Container>
   );
 

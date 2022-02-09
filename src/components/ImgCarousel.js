@@ -72,7 +72,7 @@ const Wrapper = styled.div`
     &:hover {
       border: 4px solid rgba(185, 185, 185, 0.5);
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 250ms ease;
     }
   }
 `;

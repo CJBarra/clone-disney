@@ -78,7 +78,7 @@ const NavMenu = styled.div`
     &:hover{
       span:after{
         transform: scaleX(1);
-        transition: all 0.2s ease-in-out, transform 0.4s;
+        transition: all 250ms ease-in-out, transform 400ms;
         opacity: 1;
       }
     }
