@@ -1,7 +1,12 @@
 :root {
     --text-primary: #fefefe;
+    --text-muted: #c9c9c9;
 
     --bg-primary: #090b13;
     --bg-secondary: #051435;
     --bg: #ffffff;
+}
+
+*{
+    box-sizing: border-box;
 }

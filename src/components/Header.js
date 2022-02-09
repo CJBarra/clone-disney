@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { imgUrl } from "../app/helpers";
+
 function Header() {
-  const imgUrl = `${process.env.PUBLIC_URL + "/images/"}`;
+  
   return (
     <Nav>
       <Logo src={imgUrl + "logo.svg"} alt="Disney plus logo" />
@@ -89,6 +91,6 @@ const UserImg = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  
+  overflow-x: hidden;
   cursor: pointer;
 `;
