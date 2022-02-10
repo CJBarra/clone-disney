@@ -41,11 +41,11 @@ const ViewerContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.2) 0px 4px 2px,
   rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
   rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  transition: all 250ms ease-in-out;
   
   &:hover {
     border-color: rgba(185, 185, 185, 0.8);
     cursor: pointer;
-    transition: all 250ms ease;
   }
 
   img {
