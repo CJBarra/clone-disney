@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="details" element={<Details />} />
+          <Route path="login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

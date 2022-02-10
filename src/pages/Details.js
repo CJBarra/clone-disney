@@ -42,7 +42,6 @@ const Container = styled.div`
   min-height: calc(100vh - 70px);
   padding: 0 calc(3.5vw + 5px);
   position: relative;
-  overflow-x: hidden;
 
   `;
   
@@ -102,7 +101,7 @@ const PlayBtn = styled.button`
 `;
 
 const TrailerBtn = styled(PlayBtn)`
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--btn-dark);
   border: 2px solid var(--text-primary);
   color: var(--text-primary);
 `;
@@ -118,7 +117,7 @@ const AddToPlaylistBtn = styled.button`
   justify-content: center;
   align-items: center;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--btn-dark);
   cursor: pointer;
 
   .add:before {

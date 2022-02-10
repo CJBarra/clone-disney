@@ -1,12 +1,16 @@
 :root {
-    --text-primary: #fefefe;
-    --text-muted: #c9c9c9;
+  --text-primary: #fefefe;
+  --text-muted: #c9c9c9;
 
-    --bg: #ffffff;
-    --bg-primary: #090b13;
-    --bg-secondary: #051435;
+  --btn-primary: #0063e5;
+  --btn-primary-hover: #2180fc;
+  --btn-dark: rgba(0, 0, 0, 0.5);
+
+  --bg: #ffffff;
+  --bg-primary: #090b13;
+  --bg-secondary: #051435;
 }
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }

@@ -25,9 +25,9 @@ export default Header;
 
 // ------------ Nav Menu ------------ //
 const Nav = styled.nav`
-  display: flex;
   height: 70px;
   padding: 0 20px;
+  display: flex;
   align-items: center;
   background: var(--bg-primary);
   color: var(--text-primary);
