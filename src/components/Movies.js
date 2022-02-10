@@ -4,29 +4,29 @@ import { imgUrl } from "../app/helpers";
 
 function Movies() {
   return (
-    <MovieContainer>
+    <Container>
       <h4>recommended for you</h4>
       <Content>
         <Wrapper>
-          <img src={imgUrl + "lokiz.jpg"} alt="" />
+          <img src={imgUrl + "movies-lokiz.jpg"} alt="" />
         </Wrapper>
         <Wrapper>
-          <img src={imgUrl + "snowdrop.jfif"} alt="" />
+          <img src={imgUrl + "movies-snowdrop.jfif"} alt="" />
         </Wrapper>
         <Wrapper>
-          <img src={imgUrl + "theresident.jpg"} alt="" />
+          <img src={imgUrl + "movies-theresident.jpg"} alt="" />
         </Wrapper>
         <Wrapper>
-          <img src={imgUrl + "wandavis.jpg"} alt="" />
+          <img src={imgUrl + "movies-wandavis.jpg"} alt="" />
         </Wrapper>
       </Content>
-    </MovieContainer>
+    </Container>
   );
 }
 
 export default Movies;
 
-const MovieContainer = styled.div`
+const Container = styled.div`
   text-transform: capitalize;
 `;
 

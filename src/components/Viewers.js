@@ -5,7 +5,7 @@ import { imgUrl } from "../app/helpers";
 
 function Viewers() {
   return (
-    <ViewerContainer>
+    <Container>
       <Wrapper>
         <img src={imgUrl + "viewers-disney.png"} alt="disney catalog" />
       </Wrapper>
@@ -21,13 +21,13 @@ function Viewers() {
       <Wrapper>
         <img src={imgUrl + "viewers-starwars.png"} alt="star wars catalog" />
       </Wrapper>
-    </ViewerContainer>
+    </Container>
   );
 }
 
 export default Viewers;
 
-const ViewerContainer = styled.div`
+const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-gap: 10px;

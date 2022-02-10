@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import ImgCarousel from "./ImgCarousel";
-import Movies from "./Movies";
-import Viewers from "./Viewers";
+import ImgCarousel from "../components/ImgCarousel";
+import Movies from "../components/Movies";
+import Viewers from "../components/Viewers";
 
 
 function Homepage() {
@@ -21,10 +21,9 @@ export default Homepage;
 
 const Container = styled.main`
   min-height: calc(100vh - 70px);
-  position: relative;
   padding: 0 calc(3.5vw + 5px);
+  position: relative;
   overflow-x: hidden;
-  color: var(--text-primary);
 
   &:before {
     content: "";
