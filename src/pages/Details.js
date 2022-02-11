@@ -149,6 +149,7 @@ const SubtitleTags = styled.div`
   `;
   
   const Synopsis = styled.div`
+  max-width: 750px;
   font-size: 20px;
   margin-top: 16px;
   line-height: 1.4;

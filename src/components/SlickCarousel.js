@@ -40,7 +40,7 @@ const Carousel = styled(Slider)`
   padding-top: 20px;
 
   li.slick-active button:before {
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
   }
 
   ul li button {

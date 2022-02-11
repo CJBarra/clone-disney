@@ -19,6 +19,18 @@ function Movies() {
         <Wrapper>
           <img src={imgUrl + "movies-wandavis.jpg"} alt="" />
         </Wrapper>
+          <Wrapper>
+          <img src={imgUrl + "movies-template.png"} alt="" />
+        </Wrapper>
+        <Wrapper>
+          <img src={imgUrl + "movies-template.png"} alt="" />
+        </Wrapper>
+         <Wrapper>
+          <img src={imgUrl + "movies-template.png"} alt="" />
+        </Wrapper>  
+        <Wrapper>
+          <img src={imgUrl + "movies-template.png"} alt="" />
+        </Wrapper>
       </Content>
     </Container>
   );
@@ -28,12 +40,22 @@ export default Movies;
 
 const Container = styled.div`
   text-transform: capitalize;
+  margin-bottom: 20px;
+
+  h4 {
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
 `;
 
 const Content = styled.div`
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  @media(max-width: 768px){
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  }
 `;
 
 const Wrapper = styled.div`

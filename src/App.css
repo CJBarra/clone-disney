@@ -1,6 +1,6 @@
 :root {
   --text-primary: #fefefe;
-  --text-muted: #c9c9c9;
+  --text-muted: #b4b4b4;
 
   --btn-primary: #0063e5;
   --btn-primary-hover: #2180fc;
@@ -8,7 +8,7 @@
 
   --bg: #ffffff;
   --bg-primary: #090b13;
-  --bg-secondary: #051435;
+  --bg-secondary: #0c0e14;
 }
 
 * {

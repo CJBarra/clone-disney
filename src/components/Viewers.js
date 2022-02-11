@@ -33,6 +33,10 @@ const Container = styled.div`
   grid-gap: 10px;
   margin-top: 40px;
   padding: 20px 0 16px;
+
+  @media(max-width: 768px){
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  }
   `;
   
   const Wrapper = styled.div`

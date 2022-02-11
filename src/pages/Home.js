@@ -1,18 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
 
-import ImgCarousel from "../components/ImgCarousel";
-import Movies from "../components/Movies";
-import Viewers from "../components/Viewers";
+import CircularProgress from "../components/CircularProgress";
+// lazy loading components
 
+const SlickCarousel = React.lazy(() => import('../components/SlickCarousel'));
+const Viewers = React.lazy(() => import('../components/Viewers'));
+const Movies = React.lazy(() => import('../components/Movies'));
 
 function Homepage() {
   return (
-    <Container>
-      <ImgCarousel />
-      <Viewers />
-      <Movies />
-    </Container>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Container>
+        <SlickCarousel />
+        <Viewers />
+        <Movies />
+      </Container>
+    </Suspense>
   );
 
 }
