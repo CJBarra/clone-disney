@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { imgUrl } from "../app/helpers";
 
 function Details() {
@@ -82,11 +83,11 @@ const ControlBlock = styled.div`
 const PlayBtn = styled.button`
   display: flex;
   align-items: center;
+  height: 50px;
   padding: 0 20px;
-  margin-right: 16px;
   border: none;
   border-radius: 6px;
-  height: 50px;
+  margin-right: 16px;
   background: var(--text-primary);
 
   font-size: 16px;
@@ -94,9 +95,11 @@ const PlayBtn = styled.button`
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
+  transition: all 240ms ease-in-out;
 
   &:hover {
-    background: var(--text-muted);
+    background: var(--btn-primary-hover);
+    color: var(--text-primary);
   }
 `;
 
@@ -104,21 +107,25 @@ const TrailerBtn = styled(PlayBtn)`
   background: var(--btn-dark);
   border: 2px solid var(--text-primary);
   color: var(--text-primary);
+
+  &:hover {
+    background: var(--text-muted);
+  }
 `;
 
 const AddToPlaylistBtn = styled.button`
-  border-radius: 50%;
-  border: 2px solid var(--text-primary);
-  width: 48px;
-  height: 48px;
-  margin-right: 16px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--text-primary);
+  margin-right: 16px;
   background: var(--btn-dark);
+  
   cursor: pointer;
+  transition: all 240ms ease-in-out;
 
   .add:before {
     content: "+";

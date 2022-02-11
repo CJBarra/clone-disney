@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+
 import { imgUrl } from '../app/helpers';
 
 function Footer() {
@@ -7,11 +8,11 @@ function Footer() {
     <Container>
       <Logo src={imgUrl + "logo.svg"} alt="Disney plus logo" />
       <FooterMenu>
-        <a ><span>Link 1</span></a>
-        <a ><span>Link 2</span></a>
-        <a ><span>Link 3</span></a>
-        <a ><span>Link 4</span></a>
-        <a ><span>Link 5</span></a>
+        <a href='*'><span>Link 1</span></a>
+        <a href='*'><span>Link 2</span></a>
+        <a href='*'><span>Link 3</span></a>
+        <a href='*'><span>Link 4</span></a>
+        <a href='*'><span>Link 5</span></a>
       </FooterMenu>
       <Copywrite>&copy; [Company Name]. All Rights Reserved</Copywrite>
     </Container>

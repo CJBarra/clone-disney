@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 import styled from "styled-components";
 
-import CircularProgress from "../components/CircularProgress";
-// lazy loading components
 
+// lazy loading components
 const SlickCarousel = React.lazy(() => import('../components/SlickCarousel'));
 const Viewers = React.lazy(() => import('../components/Viewers'));
 const Movies = React.lazy(() => import('../components/Movies'));
 
 function Homepage() {
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Container>
@@ -22,6 +22,8 @@ function Homepage() {
 }
 
 export default Homepage;
+
+// -------- Styled Components -------- //
 
 const Container = styled.main`
   min-height: calc(100vh - 70px);
