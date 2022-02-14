@@ -1,5 +1,9 @@
-import React, { Suspense } from "react";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import React, { Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { selectUserName } from "../features/user/userSlice";
+import db from "../firebase";
 
 
 // lazy loading components
@@ -11,6 +15,40 @@ const NewToDisney = React.lazy(() => import('../components/SectionNewToDisney'))
 const Originals = React.lazy(() => import('../components/SectionOriginals'));
 
 function Homepage() {
+  const dispatch = useDispatch();
+  const userName = useSelector(selectUserName);
+
+  let trending = [];
+  let recommend = [];
+  let newToDisney = [];
+  let originals = [];
+
+  // handles document snapshot changes base on db.collection types
+  useEffect(() => {
+    const q = query(collection(db, 'movies'));
+    const unsub = onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        switch (change.type) {
+          case 'trending':
+            trending.push({ id: change.id, ...change.doc.data() })
+            break;
+
+          case 'recommend':
+            recommend.push({ id: change.id, ...change.doc.data() })
+            break;
+
+          case 'new':
+            newToDisney.push({ id: change.id, ...change.doc.data() })
+            break;
+
+          case 'original':
+            originals.push({ id: change.id, ...change.doc.data() })
+            break;
+        }
+      })  // [docChanges END]
+    })  // [unsubscribe END]
+    unsub();
+  })
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
