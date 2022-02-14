@@ -1,14 +1,15 @@
 :root {
   --text-primary: #fefefe;
-  --text-muted: #b4b4b4;
+  --text-muted: #c0c0c0;
 
   --btn-primary: #0063e5;
   --btn-primary-hover: #2180fc;
   --btn-dark: rgba(0, 0, 0, 0.5);
-
+ 
   --bg: #ffffff;
   --bg-primary: #090b13;
   --bg-secondary: #0c0e14;
+  --bg-cloned: #040714;
 }
 
 * {

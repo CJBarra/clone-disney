@@ -34,7 +34,7 @@ function Header() {
         alert(error.message);
       })
     } else if (userName) {
-      // if user exists, dispatch setUserSignOutState and update store
+      // If user exists, dispatch setUserSignOutState and update store
       auth.signOut().then(() => {
         dispatch(setUserSignOutState())
         navigate('/login')
@@ -86,13 +86,13 @@ function Header() {
   );
 }
 
-export default Header;
+// ----------- [Styled Components] ----------- // 
 
 // ------------ Nav Menu ------------ //
 const Nav = styled.nav`
+  display: flex;
   height: 70px;
   padding: 0 20px;
-  display: flex;
   align-items: center;
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -153,13 +153,13 @@ const NavMenu = styled.div`
 
 const LoginBtn = styled.button`
   display: flex;
-  align-items: center;
   height: 40px;
   padding: 0 20px;
   border: 1px solid var(--text-primary);
   border-radius: 6px;
   margin-left: auto;
   margin-right: 10px;
+  align-items: center;
   background: var(--bg-primary);
   color: var(--text-primary);
 
@@ -227,3 +227,7 @@ const SignOutContainer = styled.div`
     }
   }
 `;
+
+
+
+export default Header;

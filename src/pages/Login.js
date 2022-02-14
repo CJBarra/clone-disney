@@ -22,7 +22,8 @@ function Login() {
   );
 }
 
-export default Login;
+
+// ----------- [Styled Components] ----------- // 
 
 const Container = styled.div`
   min-height: calc(100vh - 70px);
@@ -86,3 +87,5 @@ const Description = styled.p`
   text-align: left;
   line-height: 1.5;
 `
+
+export default Login;

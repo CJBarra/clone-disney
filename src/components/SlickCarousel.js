@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { imgUrl } from "../app/helpers";
 
-function ImgCarousel() {
+function SlickCarousel() {
   let settings = {
     dots: true,
     infinite: true,
@@ -19,22 +19,22 @@ function ImgCarousel() {
   return (
     <Carousel {...settings}>
       <Wrapper>
-        <img src={imgUrl + "slider-badag.jpg"} alt="slide 1" />
+        <img src={imgUrl + "slider-badag.jpg"} alt="" />
       </Wrapper>
       <Wrapper>
-        <img src={imgUrl + "slider-badging.jpg"} alt="slide 2" />
+        <img src={imgUrl + "slider-badging.jpg"} alt="" />
       </Wrapper>
       <Wrapper>
-        <img src={imgUrl + "slider-scale.jpg"} alt="slide 3" />
+        <img src={imgUrl + "slider-scale.jpg"} alt="" />
       </Wrapper>
       <Wrapper>
-        <img src={imgUrl + "slider-scales.jpg"} alt="slide 4" />
+        <img src={imgUrl + "slider-scales.jpg"} alt="" />
       </Wrapper>
     </Carousel>
   );
 }
 
-export default ImgCarousel;
+// ----------- [Styled Components] ----------- // 
 
 const Carousel = styled(Slider)`
   padding-top: 20px;
@@ -76,3 +76,7 @@ const Wrapper = styled.div`
     }
   }
 `;
+
+
+
+export default SlickCarousel;

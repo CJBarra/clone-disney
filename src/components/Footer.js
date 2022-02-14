@@ -19,7 +19,7 @@ function Footer() {
   )
 }
 
-export default Footer;
+// ----------- [Styled Components] ----------- // 
 
 const Container = styled.div`
   display: flex;
@@ -76,3 +76,7 @@ const FooterMenu = styled.div`
 const Copywrite = styled(FooterMenu)`
   color: var(--text-muted);
 `;
+
+
+
+export default Footer;

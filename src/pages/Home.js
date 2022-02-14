@@ -5,7 +5,10 @@ import styled from "styled-components";
 // lazy loading components
 const SlickCarousel = React.lazy(() => import('../components/SlickCarousel'));
 const Viewers = React.lazy(() => import('../components/Viewers'));
-const Movies = React.lazy(() => import('../components/Movies'));
+const Trending = React.lazy(() => import('../components/SectionTrending'));
+const Recommended = React.lazy(() => import('../components/SectionRecommended'));
+const NewToDisney = React.lazy(() => import('../components/SectionNewToDisney'));
+const Originals = React.lazy(() => import('../components/SectionOriginals'));
 
 function Homepage() {
 
@@ -14,16 +17,23 @@ function Homepage() {
       <Container>
         <SlickCarousel />
         <Viewers />
-        <Movies />
+        <h4>trending</h4>
+        <Trending />
+        <h4>recommended for you</h4>
+        <Recommended />
+        <h4>new to disney+</h4>
+        <NewToDisney />
+        <h4>originals</h4>
+        <Originals />
       </Container>
     </Suspense>
   );
 
 }
 
-export default Homepage;
 
-// -------- Styled Components -------- //
+
+// ----------- [Styled Components] ----------- // 
 
 const Container = styled.main`
   min-height: calc(100vh - 70px);
@@ -44,4 +54,13 @@ const Container = styled.main`
     bottom: 0;
     z-index: -1;
   }
+
+  h4 {
+    text-transform: capitalize;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
 `;
+
+
+export default Homepage;

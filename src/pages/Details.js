@@ -37,7 +37,7 @@ function Details() {
   );
 }
 
-export default Details;
+// ----------- [Styled Components] ----------- // 
 
 const Container = styled.div`
   min-height: calc(100vh - 70px);
@@ -162,3 +162,7 @@ const SubtitleTags = styled.div`
   line-height: 1.4;
   
   `;
+
+
+  
+export default Details;
