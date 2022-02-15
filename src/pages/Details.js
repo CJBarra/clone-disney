@@ -1,9 +1,27 @@
-import React from "react";
+import { collection, getDoc, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { imgUrl } from "../app/helpers";
+import db from "../firebase";
 
 function Details() {
+  const { id } = useParams();
+  const [detailData, setDetailData] = useState({});
+
+  useEffect(() => {
+    const docRef = collection(db, 'movies');
+    // const docSnap = getDoc(docRef);
+
+    // if () {
+    //   console.log('exists');
+    // } else {
+    //   console.log('No data available for that :id');
+    // }
+
+  }) // [useEffect END]
+
   return (
     <Container>
       <Backdrop>
@@ -45,8 +63,8 @@ const Container = styled.div`
   position: relative;
 
   `;
-  
-  const Backdrop = styled.div`
+
+const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -154,8 +172,8 @@ const SubtitleTags = styled.div`
   font-size: 14px;
   margin-top: 20px;
   `;
-  
-  const Synopsis = styled.div`
+
+const Synopsis = styled.div`
   max-width: 750px;
   font-size: 20px;
   margin-top: 16px;
@@ -164,5 +182,5 @@ const SubtitleTags = styled.div`
   `;
 
 
-  
+
 export default Details;

@@ -15,7 +15,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="login" element={<Login />} />
-          <Route path="details" element={<Details />} />
+          <Route path="details/:id" element={<Details />} />
           <Route exact path="/" element={<Home />} />
         </Routes>
         <Footer />

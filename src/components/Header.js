@@ -24,6 +24,15 @@ function Header() {
   const provider = new GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        setUser(user);
+        navigate('/');
+      }
+    })
+  }, [userName]);
+
   const handleAuth = () => {
     // [Handle User Exists]
     if (!userName) {
@@ -50,14 +59,6 @@ function Header() {
     }))
   }
 
-  useEffect(() => {
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        setUser(user);
-        navigate('/');
-      }
-    })
-  }, [userName]);
 
   return (
     <Nav>

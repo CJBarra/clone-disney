@@ -1,7 +1,9 @@
-import { collection, onSnapshot, query } from "firebase/firestore";
 import React, { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { collection, getDocs } from "firebase/firestore";
 import styled from "styled-components";
+
+import { setMovie } from "../features/movie/movieSlice";
 import { selectUserName } from "../features/user/userSlice";
 import db from "../firebase";
 
@@ -18,37 +20,49 @@ function Homepage() {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
 
-  let trending = [];
-  let recommend = [];
-  let newToDisney = [];
+  let trendings = [];
+  let recommends = [];
+  let newToDisneys = [];
   let originals = [];
 
   // handles document snapshot changes base on db.collection types
   useEffect(() => {
-    const q = query(collection(db, 'movies'));
-    const unsub = onSnapshot(q, (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        switch (change.type) {
+    // set collection reference
+    const movieRef = collection(db, 'movies');
+    // retrieve documents from reference
+    getDocs(movieRef).then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        // search for documents by 'type' field, sort into relevant arrays.
+        switch (doc.data().type) {
           case 'trending':
-            trending.push({ id: change.id, ...change.doc.data() })
+            trendings = [...trendings, { id: doc.id, ...doc.data() }]
             break;
 
           case 'recommend':
-            recommend.push({ id: change.id, ...change.doc.data() })
+            recommends = [...recommends, { id: doc.id, ...doc.data() }]
             break;
 
           case 'new':
-            newToDisney.push({ id: change.id, ...change.doc.data() })
+            newToDisneys = [...newToDisneys, { id: doc.id, ...doc.data() }]
             break;
 
           case 'original':
-            originals.push({ id: change.id, ...change.doc.data() })
+            originals = [...originals, { id: doc.id, ...doc.data() }]
             break;
+
+          default:
+            return;
         }
-      })  // [docChanges END]
-    })  // [unsubscribe END]
-    unsub();
-  })
+      })
+
+      dispatch(setMovie({
+        trending: trendings,
+        recommend: recommends,
+        newToDisney: newToDisneys,
+        original: originals,
+      }))
+    })
+  }, [userName]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

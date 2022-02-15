@@ -1,33 +1,25 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { imgUrl } from "../app/helpers";
+import { selectOriginal } from "../features/movie/movieSlice";
 
 function SectionOriginals() {
+  const movies = useSelector(selectOriginal);
+
   return (
     <Container>
       <Content>
-        <Wrapper>
-          <Link to="/">
-            <img src={imgUrl + "movies-loki.jpg"} alt="" />
-          </Link>
-        </Wrapper>
-        <Wrapper>
-          <Link to="/">
-            <img src={imgUrl + "movies-snowdrop-v1.jpg"} alt="" />
-          </Link>
-        </Wrapper>
-        <Wrapper>
-          <Link to="/">
-            <img src={imgUrl + "movies-theresident-v1.jpg"} alt="" />
-          </Link>
-        </Wrapper>
-        <Wrapper>
-          <Link to="/">
-            <img src={imgUrl + "movies-wandavis.jpg"} alt="" />
-          </Link>
-        </Wrapper>
+        {movies && movies.map((movie, key) => (
+          <Wrapper key={key}>
+            {movie.id}
+            <Link to={'/details/' + movie.id}>
+              <img src={movie.cardImg} alt={movie.title} />
+            </Link>
+          </Wrapper>
+        ))}
       </Content>
     </Container>
   );
@@ -44,7 +36,7 @@ const Content = styled.div`
   display: grid;
   grid-gap: 10px;
   gap: 10px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 
   @media(max-width: 992px){
     grid-template-columns: repeat(2, minmax(0, 1fr));
