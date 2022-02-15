@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { imgUrl } from "../app/helpers";
 import { selectNewToDisney } from "../features/movie/movieSlice";
 
 function SectionNewToDisney() {

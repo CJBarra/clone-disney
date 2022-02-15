@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -11,45 +11,48 @@ function Details() {
   const [detailData, setDetailData] = useState({});
 
   useEffect(() => {
-    const docRef = collection(db, 'movies');
-    // const docSnap = getDoc(docRef);
+    async function getDocumentReference() {
+      const document = await getDoc(doc(db, 'movies', id));
+      if (document.exists()) {
+        return setDetailData(document.data());
+      }
+      else {
+        return Promise.reject(Error('No document under id: ', id));
+      }
+    }
 
-    // if () {
-    //   console.log('exists');
-    // } else {
-    //   console.log('No data available for that :id');
-    // }
-
-  }) // [useEffect END]
+    getDocumentReference();
+  }, [id]) // [useEffect END]
 
   return (
     <Container>
       <Backdrop>
-        <img src={imgUrl + "details-backdrop.jpg"} alt="media background " />
+        <img src={detailData.backgroundImg} alt={detailData.title} />
+        <GradientMask></GradientMask>
       </Backdrop>
       <Title>
-        <img src={imgUrl + "details-title2.png"} alt="media title" />
+        <img src={detailData.titleImg} alt={detailData.title} />
       </Title>
       <ControlBlock>
-        <PlayBtn>
-          <img src={imgUrl + "play-icon-black.png"} alt="play media button" />
-          <span>play</span>
-        </PlayBtn>
-        <TrailerBtn>
-          <img src={imgUrl + "play-icon-white.png"} alt="trailer button" />
-          <span>trailer</span>
-        </TrailerBtn>
-        <AddToPlaylistBtn>
-          <span className="add" />
-        </AddToPlaylistBtn>
-        <GroupWatchBtn>
-          <img src={imgUrl + "group-icon.png"} alt="group watch button" />
-        </GroupWatchBtn>
+        <ControlBlockInner>
+          <PlayBtn>
+            <img src={imgUrl + "play-icon-white.png"} alt="play media button" />
+            <span>play</span>
+          </PlayBtn>
+          <TrailerBtn>  
+            <span>trailer</span>
+          </TrailerBtn>
+          <AddToPlaylistBtn>
+            <span className="add" />
+          </AddToPlaylistBtn>
+          <GroupWatchBtn>
+            <img src={imgUrl + "group-icon.png"} alt="group watch button" />
+          </GroupWatchBtn>
+        </ControlBlockInner>
       </ControlBlock>
-      <SubtitleTags>2022 ‧ Comedy, Animation ‧ 1h 30m</SubtitleTags>
+      <SubtitleTags>{detailData.subTitle}</SubtitleTags>
       <Synopsis>
-        The untold story of one 12-year-old's dream to be named the greatest
-        supervillain in the whole world.
+        {detailData.description}
       </Synopsis>
     </Container>
   );
@@ -58,44 +61,63 @@ function Details() {
 // ----------- [Styled Components] ----------- // 
 
 const Container = styled.div`
+  position: relative;
+  top: 68px;
   min-height: calc(100vh - 70px);
   padding: 0 calc(3.5vw + 5px);
-  position: relative;
-
-  `;
+  overflow-x: hidden;
+`;
 
 const Backdrop = styled.div`
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   z-index: -1;
-  mix-blend-mode: exclusion; // <-- may delete
+  opacity: 0.8;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
     object-fit: cover;
   }
 `;
 
-const Title = styled.div`
-  height: 30vh;
-  width: 35vw;
-  min-height: 180px;
-  min-width: 200px;
+const GradientMask = styled.div`
+  background-image: radial-gradient(farthest-side at 73% 21%, transparent, rgb(26, 29, 41));
+  position: absolute;
+  inset: 0px;
+`
 
+const Title = styled.div`
+  display: flex;
+  width: 100%;
+  min-height: 170px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 16px;
+  
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    min-width: 100px;
+    max-width: 341px;
+    width: 35vw;
+
   }
 `;
 
 const ControlBlock = styled.div`
+  max-width: 874px;
+`
+
+const ControlBlockInner = styled.div`
   display: flex;
+  min-height: 50px;
   align-items: center;
+  flex-flow: row nowrap;
+  margin: 20px 0;
 `;
 
 const PlayBtn = styled.button`
@@ -106,7 +128,7 @@ const PlayBtn = styled.button`
   border: none;
   border-radius: 6px;
   margin-right: 16px;
-  background: var(--text-primary);
+  background: var(--btn-primary);
 
   font-size: 16px;
   font-weight: 400;
@@ -114,10 +136,16 @@ const PlayBtn = styled.button`
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 240ms ease-in-out;
+  color: var(--text-primary);
 
   &:hover {
     background: var(--btn-primary-hover);
-    color: var(--text-primary);
+  }
+
+  @media(max-width: 768px){
+    height: 40px;
+    font-size: 12px;
+    padding: 0 16px;
   }
 `;
 
@@ -154,7 +182,7 @@ const AddToPlaylistBtn = styled.button`
     align-items: center;
     justify-content: center;
 
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 600;
     font-family: courier;
     color: var(--text-primary);
@@ -162,6 +190,11 @@ const AddToPlaylistBtn = styled.button`
 
   &:hover {
     background: var(--text-muted);
+  }
+
+  @media(max-width: 768px){
+    width: 36px;
+    height: 36px;
   }
 `;
 
@@ -171,7 +204,7 @@ const SubtitleTags = styled.div`
   min-height: 20px;
   font-size: 14px;
   margin-top: 20px;
-  `;
+`;
 
 const Synopsis = styled.div`
   max-width: 750px;
@@ -179,7 +212,10 @@ const Synopsis = styled.div`
   margin-top: 16px;
   line-height: 1.4;
   
-  `;
+  @media(max-width: 768px){
+    font-size: 16px;
+  }
+`;
 
 
 

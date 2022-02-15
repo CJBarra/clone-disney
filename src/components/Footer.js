@@ -23,13 +23,14 @@ function Footer() {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  padding: 26px 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 8px;
+  margin: 100px 0 0 0;
+  
   text-align: center;
-
   background-position: 50%;
   background: var(--bg-secondary);
 `;
@@ -49,10 +50,10 @@ const FooterMenu = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5px auto 16px;
+  margin: 5px auto 0;
   width: 100%;
   
-  font-size: 14px;
+  font-size: 12px;
   line-height: 22px;
   
   a {

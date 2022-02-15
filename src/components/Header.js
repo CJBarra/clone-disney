@@ -28,7 +28,7 @@ function Header() {
     onAuthStateChanged(auth, user => {
       if (user) {
         setUser(user);
-        navigate('/');
+        navigate('/home');
       }
     })
   }, [userName]);
@@ -45,8 +45,8 @@ function Header() {
     } else if (userName) {
       // If user exists, dispatch setUserSignOutState and update store
       auth.signOut().then(() => {
-        dispatch(setUserSignOutState())
-        navigate('/login')
+        dispatch(setUserSignOutState());
+        navigate('/');
       }).catch((err) => alert(err.message))
     }
   }
@@ -76,9 +76,9 @@ function Header() {
           </NavMenu>
 
           <SignOutContainer className="anchor">
-            <UserImg src={userPhoto} alt={userName} onClick={handleAuth} />
+            <UserImg src={userPhoto} alt={userName} />
             <DropDown>
-              <span onClick={handleAuth}>Sign Out</span>
+              <span onClick={handleAuth}>Logout</span>
             </DropDown>
           </SignOutContainer>
         </>
@@ -95,7 +95,7 @@ const Nav = styled.nav`
   height: 70px;
   padding: 0 20px;
   align-items: center;
-  background: var(--bg-primary);
+  background: transparent;
   color: var(--text-primary);
 `;
 
