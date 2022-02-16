@@ -68,6 +68,7 @@ const ContentCarousel = styled(Slider)`
     padding: 0 5px;
   }
   
+
   li.slick-active button:before {
     color: var(--text-primary) !important;
   }
@@ -81,6 +82,11 @@ const ContentCarousel = styled(Slider)`
 
   button {
     z-index: 1;
+    
+  }
+  
+  .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before{
+    opacity: 0;
   }
 `;
 

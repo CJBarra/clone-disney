@@ -55,12 +55,14 @@ function Homepage() {
         }
       })
 
-      dispatch(setMovie({
-        trending: trendings,
-        recommend: recommends,
-        newToDisney: newToDisneys,
-        original: originals,
-      }))
+      if(userName){
+        dispatch(setMovie({
+          trending: trendings,
+          recommend: recommends,
+          newToDisney: newToDisneys,
+          original: originals,
+        }))
+      }else return;
     })
   }, [userName]);
 

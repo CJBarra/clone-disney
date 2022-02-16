@@ -60,6 +60,11 @@ const Container = styled.div`
 
 
 const ContentCarousel = styled(Slider)`
+  .slick-list{
+    margin: 0 -5px;
+    overflow: visible;
+  }
+  
   .slick-slide{
     padding: 0 5px;
   }
@@ -79,10 +84,10 @@ const ContentCarousel = styled(Slider)`
     z-index: 1;
   }
 
-  .slick-list{
-    margin: 0 -5px;
-    overflow: visible;
+  .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before{
+    opacity: 0;
   }
+
 `;
 
 const Wrapper = styled.div`
