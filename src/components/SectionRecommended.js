@@ -1,17 +1,44 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
 import { selectRecommend } from "../features/movie/movieSlice";
 
 
 function SectionRecommended() {
-
+  // react-slick carousel settings
+  let settings = {
+    infinite: false,
+    speed: 350,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+        }
+      }
+    ]
+  }
   const movies = useSelector(selectRecommend);
   return (
     <Container>
-      <Content>
+        <ContentCarousel {...settings}>
         {movies && movies.map((movie, key) => (
           <Wrapper key={key}>
             {movie.id}
@@ -20,7 +47,7 @@ function SectionRecommended() {
             </Link>
           </Wrapper>
         ))}
-      </Content>
+        </ContentCarousel>
     </Container >
   );
 }
@@ -32,23 +59,42 @@ const Container = styled.div`
 
 `;
 
-const Content = styled.div`
-  display: grid;
-  grid-gap: 10px;
-  gap: 10px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+const ContentCarousel = styled(Slider)`
+  .slick-slide{
+    padding: 0 5px;
+  }
+  
+  li.slick-active button:before {
+    color: var(--text-primary) !important;
+  }
 
-  @media(max-width: 992px){
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  ul li button {
+    &:before {
+      font-size: 8px;
+      color: var(--text-muted);
+    }
   }
-  @media(max-width: 768px){
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+  
+  button {
+    z-index: 1;
   }
-`;
+
+  .slick-list{
+    margin: 0 -5px;
+    overflow: visible;
+  }
+
+  @media(min-width: 769px){
+    .slick-prev:before, .slick-next:before {
+      font-size: 36px;
+      line-height: 0.5;
+    }
+  }
+`
 
 const Wrapper = styled.div`
   position: relative;
-  padding-top: 60%;
+  padding-top: 48%;
   border: 4px solid transparent;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,

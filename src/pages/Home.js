@@ -70,13 +70,13 @@ function Homepage() {
       <Container>
         <SlickCarousel />
         <Viewers />
-        <h4>trending</h4>
-        <Trending />
-        <h4>recommended for you</h4>
+        <h3>recommended for you</h3>
         <Recommended />
-        <h4>new to disney+</h4>
+        <h3>new to disney+</h3>
         <NewToDisney />
-        <h4>originals</h4>
+        <h3>trending</h3>
+        <Trending />
+        <h3>originals</h3>
         <Originals />
       </Container>
     </Suspense>
@@ -111,9 +111,9 @@ const Container = styled.main`
   overflow-x: hidden;
 
 
-  h4 {
+  h3 {
     text-transform: capitalize;
-    color: var(--text-muted);
+    color: var(--text-primary);
     letter-spacing: 1px;
   }
 `;
