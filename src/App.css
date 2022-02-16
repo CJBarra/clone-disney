@@ -15,3 +15,10 @@
 * {
   box-sizing: border-box;
 }
+
+@media(min-width: 769px){
+  .slick-prev:before, .slick-next:before {
+    font-size: 24px !important;
+    line-height: 0.5 !important;
+  }
+}

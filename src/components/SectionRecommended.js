@@ -83,13 +83,6 @@ const ContentCarousel = styled(Slider)`
     margin: 0 -5px;
     overflow: visible;
   }
-
-  @media(min-width: 769px){
-    .slick-prev:before, .slick-next:before {
-      font-size: 36px;
-      line-height: 0.5;
-    }
-  }
 `
 
 const Wrapper = styled.div`

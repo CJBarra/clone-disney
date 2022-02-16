@@ -82,13 +82,6 @@ const ContentCarousel = styled(Slider)`
   button {
     z-index: 1;
   }
-
-  @media(min-width: 769px){
-    .slick-prev:before, .slick-next:before {
-      font-size: 36px;
-      line-height: 0.5;
-    }
-  }
 `;
 
 const Wrapper = styled.div`
