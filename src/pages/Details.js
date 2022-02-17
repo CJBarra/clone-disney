@@ -25,33 +25,33 @@ function Details() {
   }, [id]) // [useEffect END]
 
   return (
-    <Container>
-      <Backdrop>
+    <Container id="detail--container">
+      <Backdrop className="detail--backgroundImg">
         <img src={detailData.backgroundImg} alt={detailData.title} />
         <GradientMask></GradientMask>
       </Backdrop>
-      <Title>
+      <Title className="detail--titleImg">
         <img src={detailData.titleImg} alt={detailData.title} />
       </Title>
-      <ControlBlock>
-        <ControlBlockInner>
-          <PlayBtn>
+      <ControlBlock className="detail--control-wrap">
+        <ControlBlockInner className="detail--control-inner">
+          <PlayBtn id="control--play">
             <img src={imgUrl + "play-icon-white.png"} alt="play media button" />
             <span>play</span>
           </PlayBtn>
-          <TrailerBtn>  
+          <TrailerBtn id="control--trailer">  
             <span>trailer</span>
           </TrailerBtn>
-          <AddToPlaylistBtn>
+          <AddToPlaylistBtn id="control--add">
             <span className="add" />
           </AddToPlaylistBtn>
-          <GroupWatchBtn>
+          <GroupWatchBtn id="control--groupwatch">
             <img src={imgUrl + "group-icon.png"} alt="group watch button" />
           </GroupWatchBtn>
         </ControlBlockInner>
       </ControlBlock>
-      <SubtitleTags>{detailData.subTitle}</SubtitleTags>
-      <Synopsis>
+      <SubtitleTags className="detail--subtitle">{detailData.subTitle}</SubtitleTags>
+      <Synopsis className="detail--synopsis">
         {detailData.description}
       </Synopsis>
     </Container>
@@ -66,6 +66,30 @@ const Container = styled.div`
   min-height: calc(100vh - 70px);
   padding: 0 calc(3.5vw + 5px);
   overflow-x: hidden;
+
+
+  /* Media */
+  @media(max-width: 768px){
+    top: 0;
+
+    .detail--titleImg img{
+      width: 100%;
+    }
+  }
+  @media(max-width: 374px){
+    .detail--subtitle, .detail--synopsis{
+      font-size: 14px;
+    }
+
+    #control--play{
+      margin-right: 8px;
+      padding: 0 8px;
+    }
+
+    #control--add{
+      margin-right: 8px;
+    }
+  }
 `;
 
 const Backdrop = styled.div`
@@ -207,7 +231,7 @@ const SubtitleTags = styled.div`
 `;
 
 const Synopsis = styled.div`
-  max-width: 750px;
+  max-width: 876px;
   font-size: 20px;
   margin-top: 16px;
   line-height: 1.4;

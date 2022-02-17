@@ -53,7 +53,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 650px;
-  width: 80%;
+  width: 100%;
   padding: 80px 40px;
 `;
 

@@ -9,7 +9,8 @@
   --bg: #ffffff;
   --bg-primary: #090b13;
   --bg-secondary: #0c0e14;
-  --bg-cloned:#1a1d29;;
+  --bg-cloned:#1a1d29;
+  --bg-dropdown-hover:#191c29;
 }
 
 * {

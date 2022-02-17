@@ -82,19 +82,19 @@ function Header() {
               <a href="/"><img src={imgUrl + 'home-icon.svg'} alt="home" /><span>home</span></a>
             </li>
             <li>
-              <a href="/"><img src={imgUrl + 'search-icon.svg'} alt="search" /><span>search</span></a>
+              <a href=""><img src={imgUrl + 'search-icon.svg'} alt="search" /><span>search</span></a>
             </li>
             <li>
-              <a href="/"><img src={imgUrl + 'watchlist-icon.svg'} alt="watchlist" /><span>watchlist</span></a>
+              <a href=""><img src={imgUrl + 'watchlist-icon.svg'} alt="watchlist" /><span>watchlist</span></a>
             </li>
             <li>
-              <a href="/"><img src={imgUrl + 'original-icon.svg'} alt="originals" /><span>originals</span></a>
+              <a href=""><img src={imgUrl + 'original-icon.svg'} alt="originals" /><span>originals</span></a>
             </li>
             <li>
-              <a href="/"><img src={imgUrl + 'movie-icon.svg'} alt="movies" /><span>movies</span></a>
+              <a href=""><img src={imgUrl + 'movie-icon.svg'} alt="movies" /><span>movies</span></a>
             </li>
             <li>
-              <a href="/"><img src={imgUrl + 'series-icon.svg'} alt="series" /><span>series</span></a>
+              <a href=""><img src={imgUrl + 'series-icon.svg'} alt="series" /><span>series</span></a>
             </li>
           </NavMenu>
 
@@ -134,6 +134,9 @@ function Header() {
   );
 }
 
+export default Header;
+
+
 // ----------- [Styled Components] ----------- // 
 
 // ------------ Nav Menu ------------ //
@@ -145,6 +148,48 @@ const Nav = styled.nav`
   align-items: center;
   background: transparent;
   color: var(--text-primary);
+
+  @media(max-width: 992px){
+    #logo{
+      width: 68px;
+    }
+
+    #dropdown--userImg-image {
+      width: 32px;
+      height: 32px;
+    }
+
+    #navbar--menu-list a{
+      padding: 0 10px;
+    }
+
+    #navbar--menu-list span{
+      display: none;
+    }
+  }
+  
+  @media(max-width: 374px){
+    padding: 0px 12px;
+
+    #logo{
+      width: 48px;
+    }
+
+    #dropdown--userImg-image {
+      width: 26px;
+      height: 26px;
+    }
+
+    #navbar--menu-list{
+      margin-left: -34px;
+    }
+    #navbar--menu-list a{
+      padding: 0 6px;
+    }
+    #navbar--menu-list span{
+      display: none;
+    }
+  }
 `;
 
 const Logo = styled.img`
@@ -154,7 +199,7 @@ const Logo = styled.img`
 const NavMenu = styled.ul`
   display: flex;
   flex: 1;
-  margin-left: 20px;
+  margin-left: -16px;
   align-items: center;
 
   li {
@@ -163,7 +208,7 @@ const NavMenu = styled.ul`
     a {
       display: flex;
       align-items: center;
-      padding: 0 12px;
+      padding: 0 20px;
       text-decoration: none;
       cursor: pointer;
     
@@ -202,6 +247,8 @@ const NavMenu = styled.ul`
       }
     }
   }
+
+ 
 `;
 
 const LoginBtn = styled.button`
@@ -253,9 +300,7 @@ const UserImg = styled.img`
   }
 `;
 
-
-// ------------ User Image DropDown ------------ //
-
+// ------------ User Image Dropdown ------------ //
 const DropdownMenu = styled.ul`
   display: flex;
   position: absolute;
@@ -268,6 +313,7 @@ const DropdownMenu = styled.ul`
   align-items: center;
   flex-flow: row wrap;
   justify-content: flex-end;
+  border-bottom-left-radius: 4px;
   list-style: none;
 
   .dropdown--profile-list {
@@ -351,6 +397,7 @@ const DropdownOptionsList = styled.div`
   }
 `;
 
+// ------------ Dropdown Container (Hover) ------------ //
 const DropdownProfileContainer = styled.div`
   display: flex;
   height: 100%;
@@ -363,7 +410,7 @@ const DropdownProfileContainer = styled.div`
   
   &:hover{
     ${DropdownOptionsList} {
-      background-color: var(--bg-secondary);
+      background-color: var(--bg-dropdown-hover);
       opacity: 1;
       width: 240px;
       height: auto;
@@ -373,7 +420,7 @@ const DropdownProfileContainer = styled.div`
     
     .dropdown--menu{
       border-left: 1px solid var(--text-muted);
-      background-color: var(--bg-secondary);
+      background-color: var(--bg-dropdown-hover);
       width: 240px;
       height: auto;
       max-height: calc(100vh - 40px);
@@ -399,4 +446,3 @@ const DropdownProfileContainer = styled.div`
 
 
 
-export default Header;
