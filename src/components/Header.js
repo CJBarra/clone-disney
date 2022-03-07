@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +10,6 @@ import { selectUserName, selectUserPhoto, setUserLoginDetails, setUserSignOutSta
 
 
 function Header() {
-  // Handle Mobile Menu events
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
-
   // Handle User Login State
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -97,18 +92,6 @@ function Header() {
               <a href=""><img src={imgUrl + 'series-icon.svg'} alt="series" /><span>series</span></a>
             </li>
           </NavMenu>
-
-          {/* <NavMenu>
-            <li>
-              <a href="/"><img src={imgUrl + 'original-icon.svg'} alt="originals" /><span>originals</span></a>
-            </li>
-            <li>
-              <a href="/"><img src={imgUrl + 'movie-icon.svg'} alt="movies" /><span>movies</span></a>
-            </li>
-            <li>
-              <a href="/"><img src={imgUrl + 'series-icon.svg'} alt="series" /><span>series</span></a>
-            </li>
-          </NavMenu> */}
 
           <DropdownProfileContainer id="dropdown--profile-container">
             <DropdownMenu className="dropdown--menu">

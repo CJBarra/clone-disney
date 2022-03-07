@@ -1,38 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "styled-components";
+
 import { selectNewToDisney } from "../features/movie/movieSlice";
+import { settings } from "../app/helpers";
 
 function SectionNewToDisney() {
-  let settings = {
-    infinite: false,
-    speed: 350,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-        }
-      }
-    ]
-  }
   const movies = useSelector(selectNewToDisney);
 
   return (
@@ -52,13 +29,12 @@ function SectionNewToDisney() {
 }
 
 // ----------- [Styled Components] ----------- // 
-const Container = styled.div`
+export const Container = styled.div`
   padding: 0 0 26px;
   margin-bottom: 20px;
-
 `;
 
-const ContentCarousel = styled(Slider)`
+export const ContentCarousel = styled(Slider)`
   .slick-list{
     margin: 0 -5px;
     overflow: visible;
@@ -68,7 +44,6 @@ const ContentCarousel = styled(Slider)`
     padding: 0 5px;
   }
   
-
   li.slick-active button:before {
     color: var(--text-primary) !important;
   }
@@ -82,15 +57,14 @@ const ContentCarousel = styled(Slider)`
 
   button {
     z-index: 1;
-    
   }
-  
+
   .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before{
     opacity: 0;
   }
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   padding-top: 48%;
   border: 4px solid transparent;
