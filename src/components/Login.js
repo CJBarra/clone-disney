@@ -8,7 +8,7 @@ const Login = () => {
     <Container>
       <Content>
         <LogoBarOne src={imgUrl + "cta-logo-one.svg"} />
-        <RegisterBtn>get all three</RegisterBtn>
+        <RegisterBtn>Register Today!</RegisterBtn>
         <Description>
           Disney+ gives you something for every mood, all in one place. With
           entertainment from Disney, Pixar, Marvel, Star Wars™, National

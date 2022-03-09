@@ -10,7 +10,7 @@ import { selectNewToDisney } from "../features/movie/movieSlice";
 import { settings } from "../app/helpers";
 
 const SectionNewToDisney = () => {
-  const movies = useSelector(selectNewToDisney);
+  const movies = useSelector(selectNewToDisney); // state => state.movie.newToDisney;
 
   return (
     <Container>

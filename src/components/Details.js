@@ -11,11 +11,12 @@ const Details = () => {
   const [detailData, setDetailData] = useState({});
 
   useEffect(() => {
-    async function getDocumentReference() {
+    // check if a document exists at param of {_id} in db collection
+    const getDocumentReference = async () => {
       const document = await getDoc(doc(db, 'movies', id));
       
       if (document.exists()) {
-        return setDetailData(document.data());
+        return setDetailData(document.data()); // returns snapshot of referenced db entry
       }
       else {
         return Promise.reject(Error('No document under id: ', id));

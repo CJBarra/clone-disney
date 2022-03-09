@@ -20,7 +20,7 @@ const userSlice = createSlice({
     },
 
     // when user logs out, forget state
-    setUserSignOutState: (state) => {
+    setUserSignOutState: state => {
       state.name = null;
       state.email = null;
       state.photo = null;

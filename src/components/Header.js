@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 
 import { imgUrl } from "../app/helpers";
@@ -9,45 +9,15 @@ import { auth } from "../firebase";
 import { selectUserName, selectUserPhoto, setUserLoginDetails, setUserSignOutState } from "../features/user/userSlice";
 
 
-const Header = () => {
-  // Handle User Login State
+const Header = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userName = useSelector(selectUserName);
-  const userPhoto = useSelector(selectUserPhoto);
-
-
-  /*
-  * Sign in using Google Auth Provider via window popup.
-  * adds a scope to provider referencing account contacts.
-  * const result = await signInWithPopup(auth, provider);
-  * */
-  const handleAuth = async () => {
-    const provider = new GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
-    // [ Handle User Login by checking user state ]
-    if (!userName) {
-      await signInWithPopup(auth, provider)
-        .then(result => {
-          // Update setUser with firebase Auth credentials
-          setUser(result.user);
-        }).catch(error => {
-          alert(error.message);
-        })
-    } else if (userName) {
-      // [ dispatch setUserSignOutState and update store ]
-      auth.signOut()
-        .then(() => {
-          dispatch(setUserSignOutState());
-          navigate('/');
-        })
-        .catch(error => alert(error.message))
-    }
-  }
-
+  const userName = useSelector(selectUserName); // redux hook, stored state of user in userSlice
+  const userPhoto = useSelector(selectUserPhoto); // state.user.photo;
+  
+  // Handle User Login State
   useEffect(() => {
-    onAuthStateChanged(auth, async user => {
+    onAuthStateChanged(auth, async user => { // firebase Auth, callback to setUser state
       if (user) {
         setUser(user);
         navigate('/home');
@@ -65,9 +35,40 @@ const Header = () => {
     )
   }
 
+  /*
+  * Sign in using Google Auth Provider via window popup.
+  * adds a scope to provider referencing account contacts.
+  * const result = await signInWithPopup(auth, provider);
+  * */
+  const handleAuth = async () => {
+    const provider = new GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+    // handle User Login by checking user state
+    if (!userName) {
+      await signInWithPopup(auth, provider)
+        .then(result => {
+          // update setUser with firebase Auth credentials
+          setUser(result.user);
+        }).catch(error => {
+          alert(error.message);
+        })
+    } else if (userName) {
+      // dispatch setUserSignOutState and update store 
+      auth.signOut()
+        .then(() => {
+          dispatch(setUserSignOutState());
+          navigate('/'); // history push to Login
+        })
+        .catch(error => alert(error.message))
+    }
+  }
+
+  
+
   return (
     <Nav id="navbar-wrapper">
-      <Logo src={imgUrl + "logo.svg"} alt="Disney plus logo" id="logo" />
+      <Logo src={imgUrl + "logo.svg"} alt="Disney Plus" id="logo" />
 
       {!userName ? (<LoginBtn onClick={handleAuth} id="user-btn">Login</LoginBtn>) : (
         <>
