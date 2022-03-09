@@ -16,17 +16,18 @@ const Recommended = React.lazy(() => import('../components/SectionRecommended'))
 const NewToDisney = React.lazy(() => import('../components/SectionNewToDisney'));
 const Originals = React.lazy(() => import('../components/SectionOriginals'));
 
-function Homepage() {
+
+const Homepage = () => {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
 
-  let trendings = [];
-  let recommends = [];
-  let newToDisneys = [];
-  let originals = [];
-
   // handles document snapshot changes base on db.collection types
   useEffect(() => {
+    let trendings = [];
+    let recommends = [];
+    let newToDisneys = [];
+    let originals = [];
+
     // set collection reference
     const movieRef = collection(db, 'movies');
     // retrieve documents from reference
@@ -55,16 +56,16 @@ function Homepage() {
         }
       })
 
-      if(userName){
+      if (userName) {
         dispatch(setMovie({
           trending: trendings,
           recommend: recommends,
           newToDisney: newToDisneys,
           original: originals,
         }))
-      }else return;
+      } else return;
     })
-  }, [userName]);
+  }, [userName, dispatch]);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

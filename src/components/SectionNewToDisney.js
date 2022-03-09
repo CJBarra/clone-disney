@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { selectNewToDisney } from "../features/movie/movieSlice";
 import { settings } from "../app/helpers";
 
-function SectionNewToDisney() {
+const SectionNewToDisney = () => {
   const movies = useSelector(selectNewToDisney);
 
   return (

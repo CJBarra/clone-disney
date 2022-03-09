@@ -6,13 +6,14 @@ import styled from "styled-components";
 import { imgUrl } from "../app/helpers";
 import db from "../firebase";
 
-function Details() {
+const Details = () => {
   const { id } = useParams();
   const [detailData, setDetailData] = useState({});
 
   useEffect(() => {
     async function getDocumentReference() {
       const document = await getDoc(doc(db, 'movies', id));
+      
       if (document.exists()) {
         return setDetailData(document.data());
       }

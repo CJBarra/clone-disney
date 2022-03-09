@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { imgUrl } from "../app/helpers";
 
-function SlickCarousel() {
+const SlickCarousel = () => {
   let settings = {
     dots: true,
     infinite: true,

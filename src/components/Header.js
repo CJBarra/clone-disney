@@ -9,62 +9,61 @@ import { auth } from "../firebase";
 import { selectUserName, selectUserPhoto, setUserLoginDetails, setUserSignOutState } from "../features/user/userSlice";
 
 
-function Header() {
+const Header = () => {
   // Handle User Login State
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
+
   /*
-  * Sign in using Google popup.
-  * const provider = new GoogleAuthProvider();
-  * addScope to provider.
+  * Sign in using Google Auth Provider via window popup.
+  * adds a scope to provider referencing account contacts.
   * const result = await signInWithPopup(auth, provider);
   * */
-  const provider = new GoogleAuthProvider();
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  const handleAuth = async () => {
+    const provider = new GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-  const handleAuth = () => {
-    // [ Handle User Login ]
-    // [ If no user in state, navigate to login page, display login button wit popup ]
+    // [ Handle User Login by checking user state ]
     if (!userName) {
-      signInWithPopup(auth, provider).then((result) => {
-        // [ if user does not exist, update setUser with firebase Auth credentials
-        // and then dispatch setUserLoginDetails to state in userSlice ]
-        setUser(result.user);
-      }).catch((error) => {
-        alert(error.message);
-      })
+      await signInWithPopup(auth, provider)
+        .then(result => {
+          // Update setUser with firebase Auth credentials
+          setUser(result.user);
+        }).catch(error => {
+          alert(error.message);
+        })
     } else if (userName) {
-      // [ if user exists, dispatch setUserSignOutState and update store ]
-      auth.signOut().then(() => {
-        dispatch(setUserSignOutState());
-        navigate('/');
-      }).catch((err) => alert(err.message))
+      // [ dispatch setUserSignOutState and update store ]
+      auth.signOut()
+        .then(() => {
+          dispatch(setUserSignOutState());
+          navigate('/');
+        })
+        .catch(error => alert(error.message))
     }
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, user => {
+    onAuthStateChanged(auth, async user => {
       if (user) {
         setUser(user);
         navigate('/home');
-      } else {
-        navigate('/');
       }
     })
   }, [userName]);
 
-
-  const setUser = (user) => {
-    dispatch(setUserLoginDetails({
-      name: user.displayName,
-      email: user.email,
-      photo: user.photoURL,
-    }))
+  const setUser = user => {
+    dispatch(
+      setUserLoginDetails({
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      })
+    )
   }
-
 
   return (
     <Nav id="navbar-wrapper">
@@ -74,31 +73,31 @@ function Header() {
         <>
           <NavMenu id="navbar--menu-list">
             <li>
-              <a href="/"><img src={imgUrl + 'home-icon.svg'} alt="home" /><span>home</span></a>
+              <a href="/home" className="nav-link"><img src={imgUrl + 'home-icon.svg'} alt="home" /><span>home</span></a>
             </li>
             <li>
-              <a href=""><img src={imgUrl + 'search-icon.svg'} alt="search" /><span>search</span></a>
+              <div className="nav-link"><img src={imgUrl + 'search-icon.svg'} alt="search" /><span>search</span></div>
             </li>
             <li>
-              <a href=""><img src={imgUrl + 'watchlist-icon.svg'} alt="watchlist" /><span>watchlist</span></a>
+              <div className="nav-link"><img src={imgUrl + 'watchlist-icon.svg'} alt="watchlist" /><span>watchlist</span></div>
             </li>
             <li>
-              <a href=""><img src={imgUrl + 'original-icon.svg'} alt="originals" /><span>originals</span></a>
+              <div className="nav-link"><img src={imgUrl + 'original-icon.svg'} alt="originals" /><span>originals</span></div>
             </li>
             <li>
-              <a href=""><img src={imgUrl + 'movie-icon.svg'} alt="movies" /><span>movies</span></a>
+              <div className="nav-link"><img src={imgUrl + 'movie-icon.svg'} alt="movies" /><span>movies</span></div>
             </li>
             <li>
-              <a href=""><img src={imgUrl + 'series-icon.svg'} alt="series" /><span>series</span></a>
+              <div className="nav-link"><img src={imgUrl + 'series-icon.svg'} alt="series" /><span>series</span></div>
             </li>
           </NavMenu>
 
           <DropdownProfileContainer id="dropdown--profile-container">
             <DropdownMenu className="dropdown--menu">
               <li className="dropdown--profile-list">
-                <a id="active-profile">
+                <span className="active-profile">
                   <p className="dropdown--profile-text">My Profile</p>
-                </a>
+                </span>
                 <UserImgWrap id="dropdown--userImg-wrap">
                   <UserImg id="dropdown--userImg-image" src={userPhoto} alt={userName} />
                 </UserImgWrap>
@@ -113,9 +112,10 @@ function Header() {
           </DropdownProfileContainer>
         </>
       )}
+
     </Nav>
-  );
-}
+  ); /* Component Return END */
+} /* Header END */
 
 export default Header;
 
@@ -142,8 +142,8 @@ const Nav = styled.nav`
       height: 32px;
     }
 
-    #navbar--menu-list a{
-      padding: 0 10px;
+    #navbar--menu-list .nav-link{
+      padding: 0 16px;
     }
 
     #navbar--menu-list span{
@@ -151,7 +151,7 @@ const Nav = styled.nav`
     }
   }
   
-  @media(max-width: 374px){
+  @media(max-width: 500px){
     padding: 0px 12px;
 
     #logo{
@@ -166,8 +166,8 @@ const Nav = styled.nav`
     #navbar--menu-list{
       margin-left: -34px;
     }
-    #navbar--menu-list a{
-      padding: 0 6px;
+    #navbar--menu-list .nav-link{
+      padding: 0 10px;
     }
     #navbar--menu-list span{
       display: none;
@@ -188,7 +188,7 @@ const NavMenu = styled.ul`
   li {
     list-style-type: none;
   
-    a {
+    .nav-link {
       display: flex;
       align-items: center;
       padding: 0 20px;
@@ -314,7 +314,7 @@ const DropdownMenu = styled.ul`
     height: 70px;
     width: auto;
 
-    a {
+    span.active-profile {
       justify-content: flex-end;
     }
     
@@ -324,7 +324,7 @@ const DropdownMenu = styled.ul`
     }
   }
 
-  li a {
+  li span.active-profile {
     display: flex;
     position: relative;
     height: 100%;

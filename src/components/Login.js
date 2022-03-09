@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { imgUrl } from "../app/helpers";
 
-function Login() {
+const Login = () => {
   return (
     <Container>
       <Content>

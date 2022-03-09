@@ -6,7 +6,7 @@ import { selectTrending } from "../features/movie/movieSlice";
 import { settings } from "../app/helpers";
 import { Container, ContentCarousel, Wrapper } from './SectionNewToDisney'
 
-function SectionTrending() {
+const SectionTrending = () => {
   const movies = useSelector(selectTrending);
 
   return (

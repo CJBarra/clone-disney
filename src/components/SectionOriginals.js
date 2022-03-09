@@ -6,7 +6,7 @@ import { selectOriginal } from "../features/movie/movieSlice";
 import { settings } from "../app/helpers";
 import { Container, ContentCarousel, Wrapper } from './SectionNewToDisney'
 
-function SectionOriginals() {
+const SectionOriginals = () => {
   const movies = useSelector(selectOriginal);
 
   return (

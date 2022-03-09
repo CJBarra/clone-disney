@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { imgUrl, videoUrl } from "../app/helpers";
 
-function Viewers() {
+const Viewers = () => {
   return (
     <Container>
       <Wrapper>

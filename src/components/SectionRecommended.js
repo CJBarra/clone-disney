@@ -6,7 +6,7 @@ import { selectRecommend } from "../features/movie/movieSlice";
 import { settings } from "../app/helpers";
 import { Container, ContentCarousel, Wrapper } from './SectionNewToDisney'
 
-function SectionRecommended() {
+const SectionRecommended = () => {
   const movies = useSelector(selectRecommend);
 
   return (
