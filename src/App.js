@@ -7,12 +7,14 @@ import Home from "./components/Home";
 import Details from "./components/Details";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route path="/details/:id" element={<Details />} />
